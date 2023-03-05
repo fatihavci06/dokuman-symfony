@@ -1,0 +1,23 @@
+Servis Mimarisi aşağıdaki gibi dizayn edilir
+
+1)src klasörü içinde Service adında klasör oluşturulur
+2)service klasörü içinde service dosyası oluşturulur. Örneğin src/Services/NameGenerator.php adında service oluşturduk.
+3)Controller içerisinde bu service containerı nasıl çağırıyoruz
+	public function hello():Response
+	{
+		$name=$this->container->get(NameGenerator::class);
+		$a=$name->randomName();
+		return new Response($a);
+	}
+4)yettimi hayır. Şimdide config/services.yaml da bu servisimizi tanıtmamız gerekiyor
+	
+App\Service\NameGenerator:
+        public: true
+
+
+$this->container->get(NameGenerator::class) yerine aşağıdaki gibi kullanılması önerilmektedir
+public function service2(NameGenerator $name):Response
+    {
+       $names=$name->randomName();
+       return new JsonResponse(['name'=>$names]);
+    }

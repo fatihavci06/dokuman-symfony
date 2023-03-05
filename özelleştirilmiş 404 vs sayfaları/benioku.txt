@@ -1,0 +1,4 @@
+php bin/console assets:install
+template altına aşağıdaki dosyalar yerleştirilr
+
+urle http://127.0.0.1:8000/_error/404  yazıldığında hatayı görürüz

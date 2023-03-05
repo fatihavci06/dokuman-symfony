@@ -1,0 +1,4 @@
+twige gelen değeri manipüle etmek istiyorsunuz ve twigin extensionları bunu karşılamıyorsa harici bir extension yazabilirsiniz.
+1)src altında Twig klasörü oluştur
+2)Twig klasörü altında bu işlemi yapacak classı tanımla
+3)Controllerdan twige veri gönder ve twigte yeni filterı kullan

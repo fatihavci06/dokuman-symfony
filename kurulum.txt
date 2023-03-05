@@ -1,0 +1,8 @@
+composer create-project symfony/skeleton:"6.2.*" my_project_directory
+cd my_project_directory
+composer require webapp
+
+php bin/console server:run
+php bin/console list
+
+configler yaml formatında tutulmaktadır.

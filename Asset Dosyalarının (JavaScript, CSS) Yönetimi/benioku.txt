@@ -1,0 +1,7 @@
+1)public altında css adında klasör oluştur ve main.css ismini ver (isim değişebilir sorun yok)
+2)public altında js adında klasör oluştur ve main.js adını ver (isim değişebilir sorun yok)
+
+aşağıdaki gibi bu dosyalar çağrılır . asset publicin içi demektir
+<link href="{{ asset('css/main.css') }}" rel="stylesheet">
+
+<script src="{{asset('js/main.js')}}"></script>

@@ -1,0 +1,24 @@
+ /**
+     * @Route("/response", name="response_test")
+     * @param RequestStack $requestStack
+     * @return Response
+     */
+    public function responseTest(RequestStack $requestStack)
+    {
+        return $this->redirectToRoute('request_test');
+        return $this->render('reques/index.html.twig', [
+            'controller_name' => 'RequesController',
+        ]);
+        return new JsonResponse(['data'=>2]);
+        return new Response('hello');
+        
+    }
+    /**
+     * @Route("/service", name="servis_test")
+     * @param SessionInterface $session
+     * @return Response
+     */
+    public function serviceTest(SessionInterface $session)//session çektik 
+    {
+        return new Response($session->getName());
+    }

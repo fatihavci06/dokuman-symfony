@@ -1,0 +1,105 @@
+php bin/console  debug:router listeyi böyle alırız
+php bin/console router:match /test hangi kontroller eşleşiyorsa onun bilgisini döndürür
+Controller içersi
+/**
+   * @Route("/test2", name="app_test")
+*/
+
+localization route
+/**
+     * @Route({
+     *      "en":"/about",
+     *      "tr":"/hakkinda"
+     * },name="about")
+     */
+    public function index(): Response
+    {
+       return new JsonResponse(['Message'=>"Hakkinda sayfası"]);
+    }
+
+
+config/routes/annation.yaml içerside tüm routelara prefix verebilirsinz.
+controllers:
+    resource: ../../src/Controller/
+    type: annotation
+    prefix: 
+        en: 'en'
+        tr: 'tr'
+
+
+
+/**
+     /**
+     * @Route("/blog/{page<\d+>}",name="blog_listele")//<\d+> page için sadece integer değer gelebilir demek 
+     */
+    public function listele($page)
+    {
+        return new Response($page);
+    }
+    /**
+     * @Route("/blog/{postSlug}",name="blog_listele2")//buradada gelen slug değerini dödnürdük
+     */
+    public function listeleWithSlug($postSlug)
+    {
+         return new Response($postSlug);
+    }
+/**
+     * @Route("/routing/hello/{_locale}",defaults={"_locale"="tr"},requirements={"_locale"="tr|en"})//defaultta local tr olarak seçilmesi reqirements ile _localin tr veya en girilebilieceğinin belirtilmesi
+     */
+    public function helloRouting($_locale)
+    {
+         return new Response($_locale);
+    }
+
+     /**
+     * @Route("/api/hello/{id<\d+>}",methods={"GET","HEAD"}) //post ve get methodlarına izin veriyoruz
+     */
+    public function showPost($id)
+    {
+         return new Response($id);
+    }
+
+     /**
+     * @Route("/post-listele/{id<\d+>?2}",methods={"GET","HEAD"})
+     */
+    public function postList($id)
+    {
+         return new Response($id);
+    }
+/**
+     * @Route("/post-listele/{id<\d+>?2}",methods={"GET","HEAD"})// <\d+>=integer zorunluluğu ? ile default 2 değeri alaak
+     */
+    public function postList($id)
+    {
+         return new Response($id);
+    }
+
+     /**
+     * @Route("/makaleler/{_locale}/{yil}/{slug}.{_format}",defaults={"_format":"html"},//defeult olarak format htmldir
+     *      requirements={"_locale":"tr|en","_format":"html|json","yil":"\d+"} // _locale tr veya en olabilir, formt html veya json olabilir , yil integer olabilir.
+     * )
+     */
+	örnek route:http://127.0.0.1:8000/makaleler/tr/2023/selam-slug.json
+    public function showMakale($_locale,$yil)
+    {
+         return new Response($yil);
+    }
+
+
+URL GENERETE
+app_routing_showmakale= tanımlı url name=>php bin/console debug:router diğer paremetrelerde route için zorunlu olan parametreler
+public function urlUret()
+    {
+        $uri = $this->generateUrl('app_routing_showmakale', ["_locale" =>"en","yil"=>1990,"slug"=>"kaliteli-hzmet","_format"=>"html"]);
+         return new Response($uri);
+    }
+
+UrlGeneratorInterface::ABSOLUTE_URL  ile ürettiğimiz full url i yazdırırız http://127.0.0.1:8000/api/hello/12?yil=1990&slug=kaliteli-hzmet
+	/**
+     * @Route("url-generate2")
+     */
+    public function urlUret2()
+    {
+        $uri = $this->generateUrl('app_routing_showpost', ["id" =>"12","yil"=>1990,"slug"=>"kaliteli-hzmet"],UrlGeneratorInterface::ABSOLUTE_URL);
+         return new Response($uri);
+    }

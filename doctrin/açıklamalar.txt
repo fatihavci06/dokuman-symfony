@@ -1,0 +1,8 @@
+
+php bin/console list doctrine  ->doctrin komutları
+
+
+env da aşağıdaki düzenleme yapıldıktan sonra
+DATABASE_URL="mysql://root@127.0.0.1:3306/symfony_kurs?serverVersion=8&charset=utf8mb4"
+
+php bin/console doctrine:database:create  veritabanı oluşturduk
