@@ -1,0 +1,2 @@
+env sayfasında aşağıdaki ayarlama yapılır. debug mode kapatıldığında artık not found dönmez
+APP_DEBUG=0;
