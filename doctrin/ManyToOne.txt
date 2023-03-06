@@ -1,0 +1,105 @@
+php bin/console make:entity 
+
+ Class name of the entity to create or update (e.g. FierceGnome):
+ > Urun //var olan entity ismini yazarak güncelleme yaparız.yoksa yeniden oluşur
+
+ Your entity already exists! So let's add some new fields!
+
+ New property name (press <return> to stop adding fields):
+ > kategori //yeni property oluşturduk ve karşılığında bunun relation olduğunu bir sonraki adımda istedik
+
+ Field type (enter ? to see all types) [string]:
+ > ? // burada bu alana neler yazabiliriz onları gördük
+
+Main types
+  * string
+  * text
+  * boolean
+  * integer (or smallint, bigint)
+  * float
+
+Relationships / Associations
+  * relation (a wizard will help you build the relation)
+  * ManyToOne
+  * OneToMany
+  * ManyToMany
+  * OneToOne
+
+Array/Object Types
+  * array (or simple_array)
+  * json
+  * object
+  * binary
+  * blob
+
+Date/Time Types
+  * datetime (or datetime_immutable)
+  * datetimetz (or datetimetz_immutable)
+  * date (or date_immutable)
+  * time (or time_immutable)
+  * dateinterval
+
+Other Types
+  * ascii_string
+  * decimal
+  * guid
+
+
+ Field type (enter ? to see all types) [string]:
+ > relation
+
+ What class should this entity be related to?:
+ > Kategori  // hangi entityle ilişki kurulacağı
+
+What type of relationship is this?
+ ------------ -------------------------------------------------------------------- 
+  Type         Description                                                         
+ ------------ --------------------------------------------------------------------
+  ManyToOne    Each Urun relates to (has) one Kategori.
+               Each Kategori can relate to (can have) many Urun objects
+
+  OneToMany    Each Urun can relate to (can have) many Kategori objects.
+               Each Kategori relates to (has) one Urun
+
+  ManyToMany   Each Urun can relate to (can have) many Kategori objects.
+               Each Kategori can also relate to (can also have) many Urun objects
+
+  OneToOne     Each Urun relates to (has) exactly one Kategori.
+               Each Kategori also relates to (has) exactly one Urun.
+ ------------ --------------------------------------------------------------------
+
+ Relation type? [ManyToOne, OneToMany, ManyToMany, OneToOne]:
+ > ManyToOne //ilişki tipi. çoktan bire.
+
+ Is the Urun.kategori property allowed to be null (nullable)? (yes/no) [yes]:
+ > no // yukarda tanımladığımız kategori propertysi yani relatıonu çağıracağımız değişken boş olabilirmi?
+
+ Do you want to add a new property to Kategori so that you can access/update Urun objects from it - e.g. $kategori->getUruns()? (yes/no) [yes]:
+ > yes // kategori entitysi içinden ürünlere erişecekmisiniz?
+
+ A new property will also be added to the Kategori class so that you can access the related Urun objects from it.
+
+ New field name inside Kategori [uruns]:
+ > urunler //uruns yerine urunler olarak değiştirdik
+
+ Do you want to activate orphanRemoval on your relationship? // delete eklenini
+ A Urun is "orphaned" when it is removed from its related Kategori.
+ e.g. $kategori->removeUrun($urun)
+
+ NOTE: If a Urun may *change* from one Kategori to another, answer "no".
+
+ Do you want to automatically delete orphaned App\Entity\Urun objects (orphanRemoval)? (yes/no) [no]:
+ > yes //kategori silindiğinde bağlı ürünler silinsinmi
+
+ updated: src/Entity/Urun.php
+ updated: src/Entity/Kategori.php
+
+ Add another property? Enter the property name (or press <return> to stop adding fields):
+ >
+
+
+ 
+  Success! 
+ 
+
+ Next: When you're ready, create a migration with php bin/console make:migration

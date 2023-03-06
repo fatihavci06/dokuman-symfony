@@ -1,3 +1,16 @@
+/**
+     * @Route("/urun", name="app_urun")
+     */
+    public function index(UrunRepository $urunRepository): Response
+    {
+      ///listeleme
+       $data=$urunRepository->findAll();
+
+        return $this->json($data); //bu şekilde dönerse json data açık olark döner ancak new jsonresponse olarka dönerse kapalı döner frontendde yazdırmada sıkıntı yok
+        
+    }
+
+
  /**
      * @Route("/response", name="response_test")
      * @param RequestStack $requestStack
